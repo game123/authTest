@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crud2a/pages/login_page.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -39,8 +40,8 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(children: <Widget>[
               TextFormField(
                 controller: _nameController,
-                decoration: InputDecoration(
-                    labelText: 'Name', hintText: "John Jackson"),
+                decoration:
+                    InputDecoration(labelText: 'Name', hintText: "John Doe"),
                 validator: (value) {
                   if (value.isEmpty) {
                     return "Please enter name.";
@@ -100,6 +101,16 @@ class _RegisterPageState extends State<RegisterPage> {
                                     email: _emailController.text,
                                     password: _passwordController.text))
                             .user;
+                        /* store users data in firestore database */
+                        await Firestore.instance
+                            .collection("users")
+                            .document(user.uid)
+                            .setData({
+                          "name": _nameController.text,
+                          "email": _emailController.text,
+                          "createdAt": FieldValue.serverTimestamp(),
+                          "updatedAt": FieldValue.serverTimestamp()
+                        });
 
                         Navigator.pushNamed(context, '/');
                       } catch (e) {

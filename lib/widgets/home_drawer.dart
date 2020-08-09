@@ -1,5 +1,6 @@
 import 'package:crud2a/pages/login_page.dart';
 import 'package:crud2a/pages/change_later.dart';
+import 'package:crud2a/pages/my_items_page.dart';
 import 'package:crud2a/pages/register_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -30,11 +31,11 @@ class HomeDrawer extends StatelessWidget {
           if (isAuthenticated) ...[
             ListTile(
                 leading: Icon(Icons.note),
-                title: Text('My Posts'),
+                title: Text('My Items'),
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ChangeLater()),
+                    MaterialPageRoute(builder: (context) => MyItemsPage()),
                   );
                 }),
             ListTile(
