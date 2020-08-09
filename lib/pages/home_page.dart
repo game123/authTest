@@ -47,7 +47,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                     subtitle: Text(item.content),
                     onTap: () {
-                      // https://flutter.dev/docs/cookbook/navigation/passing-data#4-navigate-and-pass-data-to-the-detail-screen
                       Navigator.push(
                         context,
                         MaterialPageRoute(
